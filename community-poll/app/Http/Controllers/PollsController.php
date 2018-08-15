@@ -12,7 +12,7 @@ class PollsController extends Controller
 {
     public function index()
     {
-        return response()->json (Poll::get(), Response::HTTP_OK);
+        return response()->json (Poll::paginate(4), Response::HTTP_OK);
     }
 
     public function show($id)
