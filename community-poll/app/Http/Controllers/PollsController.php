@@ -6,6 +6,7 @@ use App\Poll;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\Poll as PollResource;
 
 class PollsController extends Controller
 {
@@ -24,7 +25,9 @@ class PollsController extends Controller
             $status = Response::HTTP_OK;
         }
 
-        return response()->json($poll, $status);
+        $response = new PollResource($poll);
+
+        return response()->json($response, $status);
     }
 
     public function store(Request $request)
