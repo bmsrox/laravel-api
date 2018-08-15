@@ -29,3 +29,6 @@ Route::put('polls/{poll}', 'PollsController@update');
 Route::delete('polls/{poll}', 'PollsController@delete');
 
 Route::any('errors', 'PollsController@errors');
+
+//this create resources for all verbs
+Route::apiResource('questions', 'QuestionsController');
