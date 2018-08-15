@@ -62,4 +62,11 @@ class PollsController extends Controller
     {
         return response()->json([], Response::HTTP_NOT_IMPLEMENTED);
     }
+
+    public function questions(Request $request, Poll $poll)
+    {
+        $questions = $poll->questions;
+
+        return response()->json($questions, Response::HTTP_OK);
+    }
 }

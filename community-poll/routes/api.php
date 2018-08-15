@@ -32,3 +32,7 @@ Route::any('errors', 'PollsController@errors');
 
 //this create resources for all verbs
 Route::apiResource('questions', 'QuestionsController');
+
+//managing subresources
+Route::get('polls/{poll}/questions', 'PollsController@questions');
+
