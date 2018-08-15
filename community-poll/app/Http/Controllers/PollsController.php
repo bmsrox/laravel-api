@@ -17,7 +17,7 @@ class PollsController extends Controller
 
     public function show($id)
     {
-        $poll = Poll::find($id);
+        $poll = Poll::with('questions')->find($id);
 
         if (empty($poll)) {
             $status = Response::HTTP_NOT_FOUND;
