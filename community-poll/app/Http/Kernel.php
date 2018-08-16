@@ -43,7 +43,8 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Logging::class,
             'httpHeaders:Testing Rate Limit Middleware',
             //\App\Http\Middleware\TokenAuth::class,
-            \App\Http\Middleware\BasicAuth::class,
+            //\App\Http\Middleware\BasicAuth::class,
+            'auth:api'
         ],
     ];
 

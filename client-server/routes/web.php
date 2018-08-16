@@ -14,3 +14,30 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/redirect', function () {
+
+    $query = http_build_query([
+        'client_id' => '1',
+        'redirect_uri' => 'http://172.16.25.245:8001/callback',
+        'response_type' => 'code',
+        'scope' => ''
+    ]);
+
+    return redirect('http://172.16.25.245:8000/oauth/authorize?'.$query);
+});
+
+Route::get('/callback', function (Illuminate\Http\Request $request) {
+    $http = new \GuzzleHttp\Client;
+
+    $response = $http->post('http://172.16.25.245:8000/oauth/token', [
+        'form_params' => [
+            'client_id' => '1',
+            'client_secret' => 'ULy69RD5Jiv54raRpNZn4u90afcxCDxWeUT4WCcF',
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => 'http://172.16.25.245:8001/callback',
+            'code' => $request->code,
+        ],
+    ]);
+    return json_decode((string) $response->getBody(), true);
+});
